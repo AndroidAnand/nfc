@@ -8,7 +8,6 @@ using Microsoft.Maui.ApplicationModel;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Devices;
 using Plugin.NFC;
-using Plugin.NFC.Abstractions;
 using Plugin.NFC.Utils;
 using Plugin.NFC.Maui.Sample.Services;
 
