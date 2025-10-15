@@ -1,4 +1,7 @@
-﻿using Plugin.NFC.Hosting;
+using Plugin.NFC.Hosting;
+using Plugin.NFC.Maui.Sample.Services;
+using Plugin.NFC.Maui.Sample.ViewModels;
+using Plugin.NFC.Maui.Sample.Views;
 
 namespace Plugin.NFC.Maui.Sample;
 
@@ -8,7 +11,7 @@ public static class MauiProgram
     {
         var builder = MauiApp.CreateBuilder();
         builder
-            .UseMauiApp<App>() 
+            .UseMauiApp<App>()
             .UseNfc(options =>
             {
                 options.LegacyMode = false;
@@ -42,7 +45,10 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
             });
 
-        builder.Services.AddScoped<MainPage>();
+        builder.Services.AddSingleton<IAlertService, AlertService>();
+        builder.Services.AddTransient<NfcInteractionViewModel>();
+        builder.Services.AddTransient<NfcInteractionPage>();
+        builder.Services.AddSingleton<AppShell>();
 
         return builder.Build();
     }

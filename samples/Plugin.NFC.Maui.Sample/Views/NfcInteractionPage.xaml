@@ -1,9 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage x:Class="Plugin.NFC.Maui.Sample.MainPage"
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="Plugin.NFC.Maui.Sample.Views.NfcInteractionPage"
              xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Name="thisPage"
-             BindingContext="{x:Reference thisPage}">
+             xmlns:viewModels="clr-namespace:Plugin.NFC.Maui.Sample.ViewModels"
+             x:DataType="viewModels:NfcInteractionViewModel">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -56,12 +56,12 @@
             </VerticalStackLayout>
 
             <Button Grid.Row="1"
-                    Clicked="Button_Clicked_StartListening"
+                    Command="{Binding StartListeningCommand}"
                     IsEnabled="{Binding NfcIsEnabled}"
                     Text="Read Tag" />
 
             <Button Grid.Row="2"
-                    Clicked="Button_Clicked_StopListening"
+                    Command="{Binding StopListeningCommand}"
                     IsEnabled="{Binding NfcIsEnabled}"
                     Text="Stop Listener" />
 
@@ -73,12 +73,11 @@
                           ColumnDefinitions="auto,*"
                           HorizontalOptions="Center">
 
-                        <CheckBox x:Name="ChkReadOnly"
-                                  Grid.Column="0"
-                                  IsChecked="False"
+                        <CheckBox Grid.Column="0"
+                                  Color="Red"
+                                  IsChecked="{Binding MakeTagReadOnly}"
                                   IsEnabled="{Binding NfcIsEnabled}"
-                                  VerticalOptions="Center"
-                                  Color="Red" />
+                                  VerticalOptions="Center" />
 
                         <Label Grid.Column="1"
                                FontAttributes="Bold"
@@ -88,17 +87,17 @@
                     </Grid>
 
                     <Button Grid.Row="1"
-                            Clicked="Button_Clicked_StartWriting"
+                            Command="{Binding WriteTextCommand}"
                             IsEnabled="{Binding NfcIsEnabled}"
                             Text="Write Tag (Text)" />
 
                     <Button Grid.Row="2"
-                            Clicked="Button_Clicked_StartWriting_Uri"
+                            Command="{Binding WriteUriCommand}"
                             IsEnabled="{Binding NfcIsEnabled}"
                             Text="Write Tag (Uri)" />
 
                     <Button Grid.Row="3"
-                            Clicked="Button_Clicked_StartWriting_Custom"
+                            Command="{Binding WriteCustomCommand}"
                             IsEnabled="{Binding NfcIsEnabled}"
                             Text="Write Tag (Custom)" />
 
@@ -107,7 +106,7 @@
 
             <Button Grid.Row="4"
                     BackgroundColor="Red"
-                    Clicked="Button_Clicked_FormatTag"
+                    Command="{Binding FormatTagCommand}"
                     IsEnabled="{Binding NfcIsEnabled}"
                     Text="Clear Tag" />
 
