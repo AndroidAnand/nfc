@@ -1,3 +1,5 @@
+using Plugin.NFC.Utils;
+
 namespace Plugin.NFC.Maui.Sample.ViewModels;
 
 using System;
@@ -5,8 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Maui.ApplicationModel;
 using Microsoft.Maui.Devices;
-using Plugin.NFC;
-using Plugin.NFC.Utils;
+
 
 public partial class NfcInteractionViewModel
 {

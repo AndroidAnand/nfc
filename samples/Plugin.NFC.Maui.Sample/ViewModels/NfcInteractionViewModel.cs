@@ -19,10 +19,12 @@ public partial class NfcInteractionViewModel : ObservableObject
     private bool _deviceIsListening;
     private bool _nfcIsEnabled;
     private bool _makeTagReadOnly;
+    
+    private int _iosReopenAttempts;
 
-    public NfcInteractionViewModel(INFC nfc, IAlertService alertService)
+    public NfcInteractionViewModel( IAlertService alertService)
     {
-        _nfc = nfc;
+        _nfc = CrossNFC.Current;
         _alertService = alertService;
 
         StartListeningCommand = new Command(async () => await BeginListeningAsync());
